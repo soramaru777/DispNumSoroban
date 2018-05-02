@@ -21,6 +21,9 @@ PC
 * Press B : Decrement 1 count.
 * Press A + B : Switch Dispmode SOROBAN <-> DIGIT.
 
+## Demo
+https://youtu.be/xzM--RKJMqI
+
 ## Thanks
 This Idea is from my son.
 

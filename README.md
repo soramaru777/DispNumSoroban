@@ -7,7 +7,7 @@ One column represents a one-digit number. The first row represents "5". And The 
 ![alt text](https://github.com/soramaru777/DispNumSoroban/blob/master/microbit_soroban.png "microbit soroban image")
 
 ## Requirements
-Micro:bit
+Micro:bit  
 PC
 
 ## Install

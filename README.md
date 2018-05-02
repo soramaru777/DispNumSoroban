@@ -2,7 +2,9 @@
 
 SOROBAN is Japanese Abacus.
 This app display numerical values in abacus form. A maximum of five digits can be expressed. 
-One column represents a one-digit number, and the first row represents "5". The second to fifth lines each represent "1".
+One column represents a one-digit number. The first row represents "5". And The second to fifth lines each represent "1".
+
+![alt text](https://github.com/soramaru777/DispNumSoroban/blob/master/microbit_soroban.png "microbit soroban image")
 
 ## Requirements
 Micro:bit

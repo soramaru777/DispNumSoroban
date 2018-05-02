@@ -10,58 +10,54 @@ disp_mode = 0
 old_disp_mode = 0
 
 # light level
+light_lv_top_on     = 9
+light_lv_top_off    = 2
+light_lv_bottom_on  = 6
+light_lv_bottom_off = 0
 
 def DipsNumSoroban(i_num):
   if i_num >= 100000:
     display.scroll("Error: The digit is too large.")
     return
 
-  # if i_num == 0:
-  #   num_string = "00000"
-  # else:
-  #   num_string = str(i_num)
-  #   num_string = "0" * (5 - len(num_string)) + num_string
-
   num_string = str(i_num)
   num_string = "0" * (5 - len(num_string)) + num_string
 
-  # len_num_string = len(num_string)
-
   for i in range(5):
     if old_counter[4 - i] != num_string[4 - i]:
-      DipsDigSoroban(num_string[4 - i], 4 - i)
+      DispDigSoroban(num_string[4 - i], 4 - i)
       old_counter[4 - i] = num_string[4 - i]
 
 
-def DipsDigSoroban(i_digit: str, i_pos_x: int):
+def DispDigSoroban(i_digit: str, i_pos_x: int):
   digit = int(i_digit)
   pos_x = int(i_pos_x)
 
   if digit >= 5:
-    display.set_pixel(pos_x, 0, 9)
+    display.set_pixel(pos_x, 0, light_lv_top_on)
     digit -= 5
   else:
-    display.set_pixel(pos_x, 0, 2)
+    display.set_pixel(pos_x, 0, light_lv_top_off)
 
   if digit >= 1:
-    display.set_pixel(pos_x, 1, 5)
+    display.set_pixel(pos_x, 1, light_lv_bottom_on)
   else:
-    display.set_pixel(pos_x, 1, 0)
+    display.set_pixel(pos_x, 1, light_lv_bottom_off)
 
   if digit >= 2:
-    display.set_pixel(pos_x, 2, 5)
+    display.set_pixel(pos_x, 2, light_lv_bottom_on)
   else:
-    display.set_pixel(pos_x, 2, 0)
+    display.set_pixel(pos_x, 2, light_lv_bottom_off)
 
   if digit >= 3:
-    display.set_pixel(pos_x, 3, 5)
+    display.set_pixel(pos_x, 3, light_lv_bottom_on)
   else:
-    display.set_pixel(pos_x, 3, 0)
+    display.set_pixel(pos_x, 3, light_lv_bottom_off)
 
   if digit == 4:
-    display.set_pixel(pos_x, 4, 5)
+    display.set_pixel(pos_x, 4, light_lv_bottom_on)
   else:
-    display.set_pixel(pos_x, 4, 0)
+    display.set_pixel(pos_x, 4, light_lv_bottom_off)
 
 
 while True:

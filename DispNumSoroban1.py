@@ -82,7 +82,7 @@ while True:
     if button_a_status > 0:
       # Single click
       if button_a_is_purresing <= 10:
-        # There is nothing that is late for releasing the button
+        # It may be that it is only late to press button B
         button_a_is_purresing += 1
         sleep(10)
         continue
@@ -102,7 +102,7 @@ while True:
     if button_b_status > 0:
       # Single click
       if button_b_is_purresing <= 10:
-        # There is nothing that is late for releasing the button
+        # It may be that it is only late to press button A
         button_b_is_purresing += 1
         sleep(10)
         continue
@@ -134,4 +134,4 @@ while True:
   else:
     display.scroll(str(counter))
     old_counter = ["-1", "-1", "-1", "-1", "-1"]
-#    sleep(1000)
+

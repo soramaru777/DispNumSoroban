@@ -15,6 +15,12 @@ light_lv_top_off    = 2
 light_lv_bottom_on  = 6
 light_lv_bottom_off = 0
 
+button_a_status = 0
+button_b_status = 0
+
+button_a_is_purresing = 0
+button_b_is_purresing = 0
+
 def DipsNumSoroban(i_num):
   if i_num >= 100000:
     display.scroll("Error: The digit is too large.")
@@ -61,42 +67,58 @@ def DispDigSoroban(i_digit: str, i_pos_x: int):
 
 
 while True:
+
+  button_a_status = int(button_a.get_presses())
+  button_b_status = int(button_b.get_presses())
+
   if button_a.is_pressed() and button_b.is_pressed():
     # Switch DispMode Soroban <-> Digit
     display.show(Image.YES)
     disp_mode ^= 1
-    bit_wait = 0
+    button_a_is_purresing = 0
+    button_b_is_purresing = 0
     sleep(1000)
   else:
-    # Count Up or Down
-    if button_a.is_pressed():
-      if bit_wait < 100:
-        # Wait for button A & B simultaneously press
-        bit_wait += 1
+    if button_a_status > 0:
+      # Single click
+      if button_a_is_purresing <= 10:
+        # There is nothing that is late for releasing the button
+        button_a_is_purresing += 1
+        sleep(10)
         continue
-
+      counter += button_a_status
+    elif button_a.is_pressed() == True:
+      # Pressing
+      if button_a_is_purresing <= 50:
+        # There is nothing that is late for releasing the button
+        button_a_is_purresing += 1
+        sleep(10)
+        continue
       counter += 1
+    elif button_a_is_purresing > 0:
+      counter += 1
+      button_a_is_purresing = 0
 
-      if is_pressing == False:
-        # Detect one click.
-        sleep(200)
-        is_pressing = True
-
-    elif button_b.is_pressed():
-      if bit_wait < 100:
-        # Wait for button A & B simultaneously press
-        bit_wait += 1
+    if button_b_status > 0:
+      # Single click
+      if button_b_is_purresing <= 10:
+        # There is nothing that is late for releasing the button
+        button_b_is_purresing += 1
+        sleep(10)
         continue
-
+      counter -= button_b_status
+    elif button_b.is_pressed() == True:
+      # Pressing
+      if button_b_is_purresing <= 50:
+        # There is nothing that is late for releasing the button
+        button_b_is_purresing += 1
+        sleep(10)
+        continue
       counter -= 1
+    elif button_b_is_purresing > 0:
+      counter -= 1
+      button_b_is_purresing = 0
 
-      if is_pressing == False:
-        # Detect one click.
-        sleep(200)
-        is_pressing = True
-    else:
-      bit_wait = 0
-      is_pressing = False
 
   # Loop Number Max<->Min
   if counter < 0:
@@ -112,4 +134,4 @@ while True:
   else:
     display.scroll(str(counter))
     old_counter = ["-1", "-1", "-1", "-1", "-1"]
-    sleep(1000)
+#    sleep(1000)

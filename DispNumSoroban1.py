@@ -15,9 +15,6 @@ light_lv_top_off    = 2
 light_lv_bottom_on  = 6
 light_lv_bottom_off = 0
 
-button_a_status = 0
-button_b_status = 0
-
 button_a_is_purresing = 0
 button_b_is_purresing = 0
 
@@ -68,9 +65,6 @@ def DispDigSoroban(i_digit: str, i_pos_x: int):
 
 while True:
 
-  button_a_status = int(button_a.get_presses())
-  button_b_status = int(button_b.get_presses())
-
   if button_a.is_pressed() and button_b.is_pressed():
     # Switch DispMode Soroban <-> Digit
     display.show(Image.YES)
@@ -79,14 +73,15 @@ while True:
     button_b_is_purresing = 0
     sleep(1000)
   else:
-    if button_a_status > 0:
+
+    # Check button A
+    if int(button_a.get_presses()) > 0:
       # Single click
       if button_a_is_purresing <= 10:
         # It may be that it is only late to press button B
         button_a_is_purresing += 1
         sleep(10)
         continue
-      counter += button_a_status
     elif button_a.is_pressed() == True:
       # Pressing
       if button_a_is_purresing <= 50:
@@ -99,14 +94,14 @@ while True:
       counter += 1
       button_a_is_purresing = 0
 
-    if button_b_status > 0:
+    # Check button B
+    if int(button_b.get_presses()) > 0:
       # Single click
       if button_b_is_purresing <= 10:
         # It may be that it is only late to press button A
         button_b_is_purresing += 1
         sleep(10)
         continue
-      counter -= button_b_status
     elif button_b.is_pressed() == True:
       # Pressing
       if button_b_is_purresing <= 50:
@@ -126,6 +121,7 @@ while True:
   elif counter > 99999:
     counter = 0
 
+  # Display Number
   if disp_mode == 0:
     DipsNumSoroban(counter)
     if old_disp_mode != disp_mode:

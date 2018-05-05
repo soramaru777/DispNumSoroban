@@ -71,6 +71,8 @@ while True:
     disp_mode ^= 1
     button_a_is_purresing = 0
     button_b_is_purresing = 0
+    button_a.was_pressed()
+    button_b.was_pressed()
     sleep(1000)
   else:
 

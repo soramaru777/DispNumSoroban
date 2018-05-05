@@ -75,7 +75,7 @@ while True:
   else:
 
     # Check button A
-    if int(button_a.get_presses()) > 0:
+    if button_a.was_pressed() == True:
       # Single click
       if button_a_is_purresing <= 10:
         # It may be that it is only late to press button B
@@ -95,7 +95,7 @@ while True:
       button_a_is_purresing = 0
 
     # Check button B
-    if int(button_b.get_presses()) > 0:
+    if button_b.was_pressed() == True:
       # Single click
       if button_b_is_purresing <= 10:
         # It may be that it is only late to press button A

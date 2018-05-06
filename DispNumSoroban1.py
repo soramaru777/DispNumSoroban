@@ -79,15 +79,14 @@ while True:
     # Check button A
     if button_a.was_pressed() == True:
       # Single click
-      if button_a_is_purresing <= 10:
-        # It may be that it is only late to press button B
-        button_a_is_purresing += 1
-        sleep(10)
-        continue
+      button_a_is_purresing += 1
+      sleep(10)
+      continue
     elif button_a.is_pressed() == True:
       # Pressing
       if button_a_is_purresing <= 50:
         # There is nothing that is late for releasing the button
+        # Or It may be that it is only late to press button B
         button_a_is_purresing += 1
         sleep(10)
         continue
@@ -99,15 +98,14 @@ while True:
     # Check button B
     if button_b.was_pressed() == True:
       # Single click
-      if button_b_is_purresing <= 10:
-        # It may be that it is only late to press button A
-        button_b_is_purresing += 1
-        sleep(10)
-        continue
+      button_b_is_purresing += 1
+      sleep(10)
+      continue
     elif button_b.is_pressed() == True:
       # Pressing
       if button_b_is_purresing <= 50:
         # There is nothing that is late for releasing the button
+        # Or It may be that it is only late to press button A
         button_b_is_purresing += 1
         sleep(10)
         continue
